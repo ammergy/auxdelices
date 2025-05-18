@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donnez votre avis et gagnez un gâteau</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fdf2f8;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .section {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    .title {
+      font-size: 1.6rem;
+      font-weight: bold;
+      text-align: center;
+      color: #ec4899;
+      margin-bottom: 20px;
+    }
+    .choice-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 20px;
+    }
+    .choice-button {
+      padding: 12px 20px;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+    .choice-button-positive {
+      background-color: #34d399;
+      color: white;
+    }
+    .choice-button-negative {
+      background-color: #f87171;
+      color: white;
+    }
+    .choice-button:hover {
+      opacity: 0.85;
+    }
+    .hidden {
+      display: none;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    .input, .textarea, .select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    .textarea {
+      height: 100px;
+    }
+    .submit-btn {
+      background-color: #ec4899;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      width: 100%;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .submit-btn:hover {
+      background-color: #db2777;
+    }
+
+    @media (max-width: 600px) {
+      .title {
+        font-size: 1.4rem;
+      }
+      .choice-button {
+        font-size: 1rem;
+      }
+      .question label {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Section de choix -->
+    <div id="experience" class="section">
+      <h1 class="title">Donnez votre avis et gagnez un gâteau de votre choix ! 🎂</h1>
+      <p class="text-center">Un gagnant chaque mois !</p>
+
+      <div class="choice-buttons">
+        <button class="choice-button choice-button-positive" onclick="choosePositive()">J’ai adoré le service 👍</button>
+        <button class="choice-button choice-button-negative" onclick="chooseNegative()">Je n’ai pas été satisfait(e) 👎</button>
+      </div>
+    </div>
+
+    <!-- Section positive -->
+    <div id="positive-experience" class="hidden section">
+      <h2 class="text-xl font-semibold text-center">Merci pour votre avis positif ! 🙌</h2>
+      <p class="text-center">Nous sommes ravis que vous ayez passé un bon moment !</p>
+      <a href="https://g.page/r/CTSvicNR_w24EBM/review" class="submit-btn" target="_blank">Donner un avis sur Google</a>
+    </div>
+
+    <!-- Section négative avec formulaire -->
+    <div id="negative-experience" class="hidden section">
+      <h2 class="text-xl font-semibold text-center">Nous sommes désolés pour votre expérience 😔</h2>
+      <p class="text-center">Merci de remplir ce formulaire pour nous aider à améliorer notre service.</p>
+
+      <form id="feedbackForm" method="POST" enctype="application/x-www-form-urlencoded" action="https://script.google.com/macros/s/AKfycbz-XyqSWRq6yAgu8aPfwVp7miQHLfL4eqmFMpwwIsDDfkM5yo1ApZn5RXYj9IaKRjI/exec">
+        
+        <div class="question">
+          <label for="question1">1. Qu’est-ce que vous n’avez pas aimé ?</label>
+          <input type="text" id="question1" name="you1" class="input" required />
+        </div>
+        
+        <div class="question">
+          <label for="question2">2. Comment pourrions-nous améliorer votre expérience ?</label>
+          <textarea id="question2" name="you2" class="textarea" required></textarea>
+        </div>
+        
+        <div class="question">
+          <label for="question3">3. Avez-vous été bien accueilli(e) ?</label>
+          <select id="question3" name="you3" class="select" required>
+            <option value="">Choisissez une option</option>
+            <option value="Oui">Oui</option>
+            <option value="Moyennement">Moyennement</option>
+            <option value="Pas du tout">Pas du tout</option>
+          </select>
+        </div>
+        
+        <div class="question">
+          <label for="question4">4. Le produit correspondait-il à vos attentes ?</label>
+          <select id="question4" name="you4" class="select" required>
+            <option value="">Choisissez une option</option>
+            <option value="Tout à fait">Tout à fait</option>
+            <option value="Partiellement">Partiellement</option>
+            <option value="Pas vraiment">Pas vraiment</option>
+            <option value="Pas du tout">Pas du tout</option>
+          </select>
+        </div>
+        
+        <div class="question">
+          <label for="question5">5. Souhaitez-vous être recontacté(e) ?</label>
+          <input type="email" id="question5" name="you5" class="input" placeholder="Votre email (facultatif)" />
+        </div>
+
+        <button type="submit" class="submit-btn">Envoyer votre avis</button>
+      </form>
+    </div>
+    
+  </div>
+
+  <script>
+    function choosePositive() {
+      document.getElementById("experience").classList.add("hidden");
+      document.getElementById("positive-experience").classList.remove("hidden");
+    }
+
+    function chooseNegative() {
+      document.getElementById("experience").classList.add("hidden");
+      document.getElementById("negative-experience").classList.remove("hidden");
+    }
+  </script>
+
+</body>
+</html>
